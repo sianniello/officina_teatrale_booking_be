@@ -1,13 +1,13 @@
 from utils import *
-from flask import Flask, request
+from flask import Flask, request, render_template
 import db_connector as dbc
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="static")
 
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def main():
+    return render_template("index.html")
 
 
 @app.route("/bookings", methods=['GET'])
