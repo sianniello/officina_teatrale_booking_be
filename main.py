@@ -8,7 +8,12 @@ def hello():
     return "Hello World!"
 
 
-@app.route("/booking", methods=['POST'])
+@app.route("/bookings", methods='GET')
+def bookings():
+    return
+
+
+@app.route("/bookings", methods=['POST'])
 def new_booking():
     booking_json = request.get_json()
     print(booking_json)
