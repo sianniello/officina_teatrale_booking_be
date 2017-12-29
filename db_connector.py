@@ -40,14 +40,15 @@ def update_seat(seat_id, status):
     client = MongoClient(URL)
     db = client[DATABASE]
     seats = db.seats
-    seats.update_one(
-        {"seat_id": seat_id},
-        {
-            "$set": {
-                "status": status
+    if check_seat_available(seat_id, seats):
+        seats.update_one(
+            {"seat_id": seat_id},
+            {
+                "$set": {
+                    "status": status
+                }
             }
-        }
-    )
+        )
 
 
 def check_seat_available(seat_id, seats):
@@ -62,7 +63,7 @@ def get_seat_status(seat_id):
     client = MongoClient(URL)
     db = client[DATABASE]
     seats = db.seats
-    return seats.find({"seat_id": seat_id})
+    return seats.find({"seat_id": seat_id}).status
 
 
 # seats_initialize()

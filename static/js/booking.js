@@ -6,10 +6,11 @@ $(document).ready(function()
     $.ajax({
         // url: 'http://stenomyapp.ddns.net:5000/bookings',
         url: 'http://localhost:5000/bookings',
+        data: {"Access-Control-Allow-Origin": tr},
         type: 'GET',
         success: data =>
         {
-            console.log("Response" + data);
+            console.log(data);
             start(data)
         }
     });

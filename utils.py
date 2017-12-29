@@ -3,21 +3,21 @@ import re
 
 def seat_map_encoding(seats):
     regex = r"([A-Z]+)([0-9]+)"
-    res = ''
+    res = []
     prev_row = ''
     for seat in seats:
         match = re.match(regex, seat['seat_id'], re.I)
         if match:
             row = match.groups()[0]
             column = match.groups()[1]
-            print("row: " + row + " column: " + column)
             if prev_row == '':
                 prev_row = row
+                res.append([])
 
-            if row == prev_row:
-                res += seat_status_switch(seat)
-            else:
-                res += '\n' + seat_status_switch(seat)
+            if row != prev_row:
+                res.append([])
+
+            res[len(res) - 1].append(seat_status_switch(seat))
 
             prev_row = row
 
