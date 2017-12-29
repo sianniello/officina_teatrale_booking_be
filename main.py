@@ -30,4 +30,5 @@ def bookings():
 def new_booking():
     booking_json = request.get_json()
     print(booking_json)
+    dbc.add_booking(booking_json)
     return 201
