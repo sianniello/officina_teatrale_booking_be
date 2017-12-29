@@ -30,4 +30,4 @@ def bookings():
 def new_booking():
     booking_json = request.get_json()
     print(booking_json)
-    return "OK"
+    return jsonify(booking_json)
