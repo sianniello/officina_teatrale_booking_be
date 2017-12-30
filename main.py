@@ -6,6 +6,7 @@ import db_connector as dbc
 app = Flask(__name__, template_folder="static")
 CORS(app)
 
+
 @app.route("/")
 def main():
     return render_template("index.html")
@@ -30,5 +31,5 @@ def bookings():
 def new_booking():
     booking_json = request.get_json()
     print(booking_json)
-    dbc.add_booking(booking_json)
-    return 201
+    if dbc.book_seat(booking_json):
+        return jsonify(seats=booking_json['seats']), 201

@@ -9,7 +9,6 @@ def seat_map_encoding(seats):
         match = re.match(regex, seat['seat_id'], re.I)
         if match:
             row = match.groups()[0]
-            column = match.groups()[1]
             if prev_row == '':
                 prev_row = row
                 res.append([])
