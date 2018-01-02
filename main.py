@@ -1,15 +1,10 @@
 from utils import *
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import db_connector as dbc
 
 app = Flask(__name__, template_folder="static")
 CORS(app)
-
-
-@app.route("/")
-def main():
-    return render_template("index.html")
 
 
 @app.route("/bookings", methods=['GET'])

@@ -1,8 +1,33 @@
 from pymongo import MongoClient
 
 
-ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-COLUMNS = 17
+ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z']
+COLUMNS = [[13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13],
+           [13, 16, 13]
+           ]
 # URL = "localhost:27017"
 URL = "mongodb://steno87:110203_Ca@cluster0-shard-00-00-fxpno.mongodb.net:27017,cluster0-shard-00-01-fxpno.mongodb.net:27017,cluster0-shard-00-02-fxpno.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
 DATABASE = "officina_teatrale_db"
@@ -14,11 +39,22 @@ bookings = db.bookings
 
 
 def seats_initialize(rows=ROWS, columns=COLUMNS):
-    for i in rows:
-        for j in range(1, columns):
-            print(i + str(j))
+    for idx, i in enumerate(rows):
+        for j in range(1, columns[idx][0]):
             seat = {
-                "seat_id": i + str(j),
+                "seat_id": i + "S" + str(j),
+                "status": "available"
+            }
+            seats.insert_one(seat)
+        for j in range(1, columns[idx][1]):
+            seat = {
+                "seat_id": i + "C" + str(j),
+                "status": "available"
+            }
+            seats.insert_one(seat)
+        for j in range(1, columns[idx][2]):
+            seat = {
+                "seat_id": i + "D" + str(j),
                 "status": "available"
             }
             seats.insert_one(seat)
@@ -64,6 +100,7 @@ def get_seat_status(seat_id):
 def bookings_reset():
     bookings.delete_many({})
 
-# seats_reset()
-# booking_reset()
-# seats_initialize()
+
+seats_reset()
+bookings_reset()
+seats_initialize()
