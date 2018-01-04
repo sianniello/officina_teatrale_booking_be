@@ -1,7 +1,9 @@
 from pymongo import MongoClient
 
 
-ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z']
+ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+        'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Z']
 COLUMNS = [[13, 16, 13],
            [13, 16, 13],
            [13, 16, 13],
